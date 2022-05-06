@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>pic_up</title>
+</head>
+<body>
+ 
+ 
+
+
+    <!-- 图片上传控件 START -->
+<div style="clear: both;" id="uploadForm"> 
+<input id="file" type="file" value="" /> 
+<button id="upload" type="button" class="btn btn-success btn-sm">附件上传</button>
+
+ </div>
+<!--图片上传控件 END -->
+    <style type="text/css">
+        
+
+#uploadForm { width: auto; height: 25px; border: 0px solid red; position: relative ; top:0px; left:55px }
+#file { border: 1px solid red; height: 40px; width:100px; line-height: 25px; position:absolute; top:0px; left:0px; opacity:0;z-index:88888;} 
+    </style>
+ 
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript">
+	$("#file").change(function(event) {
+		var files = $('#file')[0].files
+        var fd = new FormData()
+            fd.append('file',files[0])
+
+            $.ajax({
+            	url: 'upload_file.php',
+            	method:'POST',           	 
+            	data: fd,
+            	processData:false,
+            	 contentType:false,
+            })
+            .done(function(date) {
+            	console.log(date);
+            })
+            .fail(function() {
+            	console.log("error");
+            })
+
+	});
+
+</script>
+</body>
+</html>
+
+ 
